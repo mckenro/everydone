@@ -1,0 +1,43 @@
+
+<ul id="nav-mobile" class="side-nav fixed">
+  <li class="logo"><a id="logo-container" href="#" class="brand-logo center">everydone</a>
+  </li>
+   <li class="no-padding">
+     <ul class="collapsible collapsible-accordion">
+       <li class="bold"><a href="#" class="collapsible-header  waves-effect waves-cyan">Home</a>
+       </li>
+       <li class="bold"><a class="collapsible-header  waves-effect waves-cyan">Create Group</a>
+         <div class="collapsible-body">
+           <ul>
+             <li>{% include 'creategroup_createpage.html.twig' %}</li>
+           </ul>
+         </div>
+       </li>
+       <li class="bold"><a class="collapsible-header  waves-effect waves-cyan">Create Tasks</a>
+         <div class="collapsible-body">
+           <ul>
+             <li><a href="#">Tasks go here</a></li>
+           </ul>
+         </div>
+       </li>
+       <li class="bold"><a class="collapsible-header  waves-effect waves-cyan">Friends</a>
+         <div class="collapsible-body">
+           <ul>
+             <li><a href="#">Friends go here</a></li>
+           </ul>
+         </div>
+       </li>
+         <div class = "navsearch">
+           <li>{% include 'search_createpage.html.twig' %}</li>
+         </div>
+     </ul>
+
+<div class="twitter-feed">
+             <a class="twitter-timeline"  href="https://twitter.com/hashtag/everydonetest" data-widget-id="852297904609935361" width=100%>#everydonetest Tweets</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+  <br>
+  <h7> Tweet at the team over at everydone!
+    <br>
+  <a href="https://twitter.com/intent/tweet?button_hashtag=everydonetest" class="twitter-hashtag-button" data-show-count="false">Tweet #LoveTwitter</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></h7>
+</div>

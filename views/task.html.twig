@@ -1,0 +1,33 @@
+{% include 'top.html.twig' %}
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col m12 myprofile">
+      <h3>Task View</h3>
+    </div>
+  </div>
+  <div class = "row">
+    {% if assigned_user is not empty %}
+    <div class = "col m12 section">
+      <h4>Task {{ task.getName }} assigned to:<br><a href="/homepage/{{ user_id }}" class=""> {{ assigned_user }} </a></em></h4>
+      <p>Description: {{ task.getDescription }}</p>
+      <p>Date Made: {{ task.getAssignTime }}</p>
+      <p>Due Time: {{ task.getDueTime }}</p>
+    </div>
+  </div>
+  <div class = "row">
+    {% else %}
+      <div class = "col m12 section">
+        <h4>Task: {{ task.getName }}</h4>
+        <p>Description: {{ task.getDescription }}</p>
+        <p>Date Made: {{ task.getAssignTime }}</p>
+        <p>Due Time: {{ task.getDueTime }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'sidenav.html.twig' %}
+
+{% include 'bottom.html.twig' %}

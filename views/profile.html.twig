@@ -1,0 +1,61 @@
+{% include 'top.html.twig' %}
+<div class = "container">
+  <div class = "row">
+    <div class = "col m12">
+      <div class = "myprofile">
+        <h2 class="header">{{ profile.getFirstName }} {{ profile.getLastName }}</h2>
+        <div class="card horizontal">
+          <div class="card-image">
+            <img src="{{ profile.getPicture }}" height="160" width="160">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p>Joined <span class = "brand">everydone</span> on {{ profile.getDate }}</p>
+              <p>{{ profile.getBio }}</p>
+            </div>
+            <div class="linkbackground">
+              <div class="card-action">
+                <a href="/profile/{{ user_id }}">Edit Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="container">
+  <div class="input-area">
+    <h5>Use the fields below to edit your profile</h5>
+    <form action="/edit_homepage/{{ user_id }}" method="post" enctype="multipart/form-data">
+      <div class="input-field col m4">
+        <input type="hidden" name="_method" value="patch">
+        <label for="first_name">Enter your first name</label>
+        <input type="text" name="first_name" value="{{ profile.getFirstName }}" placeholder="{{ profile.getFirstName }}">
+      </div>
+      <div class="input-field col m4">
+        <input type="hidden" name="_method" value="patch">
+        <label for="last_name">Enter your last name</label>
+        <input type="text" name="last_name" value="{{ profile.getLastName }}" placeholder="{{ profile.getLastName }}">
+      </div>
+      <div class="input-field col m4">
+        <input type="hidden" name="_method" value="patch">
+        <label for="profile_pic">Enter the <strong>URL</strong> for your profile picture</label>
+        <input type="text" name="profile_pic" value="{{ profile.getPicture }}" placeholder="{{ profile.getPicture }}">
+      </div>
+      <div class="input-field col m4">
+        <input type="hidden" name="_method" value="patch">
+        <label for="bio">Enter a bio</label>
+        <textarea class="materialize-textarea" type="text" name="bio" rows="5" value="{{ profile.getBio }}" placeholder="{{ profile.getBio }}"></textarea>
+      </div>
+      <input type="hidden" name="user_id" value="{{ user_id }}">
+      <button type="submit" class="btn cyan waves-effect waves-light" name="button">Submit your profile</button>
+    </form>
+  </div>
+  {% if msg is not empty %}
+    {{ msg }}
+  {% endif %}
+
+  {% include 'sidenav.html.twig' %}
+
+  {% include 'bottom.html.twig' %}
+</div>

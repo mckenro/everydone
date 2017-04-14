@@ -1,0 +1,35 @@
+{% include 'top2.html.twig' %}
+  <div class="login-area">
+    <div class = "logo-area">
+      <img src = "images/everydone_logo_tiny.png" width="200px">
+    </div>
+    <p>Welcome to everydone, the easy to-do list for everyone!</p>
+  </div>
+
+  <div class="container">
+    <form action="/login_user" method="post">
+      <div class="input-field col m4">
+        <input id="username" type="text" name="username" class="validate">
+        <label for="username" class>User Name</label>
+        <br>
+      </div>
+
+      <div class="input-field col m4">
+        <input id="userpassword" type="password" name="userpassword" class="validate">
+        <label for="userpassword">Password</label>
+      </div>
+
+      <br>
+      <button class="btn cyan waves-effect waves-light" type="submit" name="button">Log In</button>
+    </form>
+      <br>
+    <form action="/create_user" method="post">
+      <button class="btn amber waves-effect waves-light" type="submit" name="button">Create Account</button>
+    </form>
+
+    {% if msg is not empty %}
+    {{ msg }}
+    {% endif %}
+    {% include 'bottom.html.twig' %}
+
+  </div>

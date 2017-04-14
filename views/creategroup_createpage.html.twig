@@ -1,0 +1,20 @@
+<div class="container">
+  <form action="/creategroup" method="post">
+    <div class="input-field col m4">
+      <input type="hidden" name="user_id" value="{{ user_id }}">
+      <label for="group">New Group Name</label>
+      <input type="text" name="group">
+    </div>
+      <p>
+        <input type="radio" name="privacy" value="0" id="private" required/>
+        <label for="private">Private</label>
+      </p>
+      <p>
+        <input type="radio" name="privacy" value="1" id="public" />
+        <label for="public">Public</label>
+      </p>
+
+
+    <button type="submit" class="btn cyan waves-effect waves-light" name="button">Create</button>
+  </form>
+</div>

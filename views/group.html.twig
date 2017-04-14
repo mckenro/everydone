@@ -1,0 +1,125 @@
+{% include 'top.html.twig' %}
+
+<div class = "container">
+  <div class = "row">
+    <div class = "col m12 myprofile">
+      <h3>{{ groupname }}</h3>
+    </div>
+  </div>
+{% if user.getId == admin_id %}
+<div class = "row">
+  <div class = "col m12 section">
+    <div class = "section">
+      <h5>Add Associates to {{ groupname }}</h5>
+      <form action="/sendinvite" method="post">
+        <input type="hidden" name="user_id" value="{{ user.getId }}">
+        <input type="hidden" name="admin_id" value="{{ admin_id }}">
+        <input type="hidden" name="group_id" value="{{ group_id }}">
+        <label for="user">User Name:</label>
+        <input type="text" name="user">
+        <button type="submit" class="btn cyan waves-effect waves-light">Invite</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class = "row">
+  <div class = "col m12 section">
+    <div class = "section">
+      <h5>Create A New Task for {{ groupname }}</h5>
+      <form action="/createtask" method="post">
+        <input type="hidden" name="user_id" value="{{ user.getId }}">
+        <input type="hidden" name="admin_id" value="{{ admin_id }}">
+        <input type="hidden" name="group_id" value="{{ group_id }}">
+        <label for="task">Enter a task:</label>
+        <input type="text" name="task" required>
+        <label for="description">Description:</label>
+        <textarea class="materialize-textarea" type="text" name="description" rows="5" required></textarea>
+        <button type="submit" name="createtask" class="btn cyan waves-effect waves-light">Create</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+  {% if msg is not empty %}
+    {{ msg }}
+  {% endif %}
+{% endif %}
+
+
+      {% if user.getId == admin_id %}
+        {% if tasks is not empty %}
+          <h4>Unassigned Tasks:</h4>
+          {% for task in tasks %}
+          <div class = "row">
+            <div class = "col m12">
+              <div class = "section">
+                <form  name="user_id" method="post" action="/task/{{task.getId}}">
+                  <input type="hidden" name="user_id" value="{{ user.getId }}">
+                  <div class="butlink"> Task: <button class="simple" type="submit" name="assign">{{ task.getName }}</button></div>
+                </form>
+                <h6 class= "assigntask">Assign this Task to a User</h6>
+                <form action="/assignuser" method="post">
+                  <input type="hidden" name="user_id" value="{{ user.getId }}">
+                  <input type="hidden" name="task_id" value="{{ task.getId }}">
+                  <input type="hidden" name="group_id" value="{{ group_id }}">
+                  <label for="username">Enter username:</label>
+                  <input type="text" name="username" required>
+                  <label for="duetime">Enter due time:</label>
+                  <input type="text" name="duetime" placeholder="YYYY-MM-DD" required>
+                  <button class="btn cyan waves-effect waves-light" type="submit" name="assign">Assign</button>
+              </form>
+              <form action="/deletetask" method="post">
+                <input type="hidden" name="user_id" value="{{ user.getId }}">
+                <input type="hidden" name="task_id" value="{{ task.getId }}">
+                <input type="hidden" name="group_id" value="{{ group_id }}">
+                <button class="btn cyan waves-effect waves-light deletebutton" type="submit">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+
+
+
+    {% if user.getId != admin_id %}
+      {% if unassignedtasks is not empty %}
+      <div class = "row">
+        <div class = "col m12 section">
+          <h4>Unassigned Tasks</h4>
+          {% for unassignedtask in unassignedtasks %}
+
+          <form  name="user_id" method="post" action="/task/{{ unassignedtask.getId }}">
+            <input type="hidden" name="user_id" value="{{ user.getId }}">
+            <div class="butlink"> Task: <button class="simple" type="submit" name="assign">{{ unassignedtask.getName }}</button></div>
+          </form>
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+        </div>
+      </div>
+<div class="container">
+<div class="container">
+    {% if assignedtasks is not empty %}
+      <div class = "row">
+        <div class = "col m12 section">
+          <h4>Assigned Task</h4>
+          {% for assignedtask in assignedtasks %}
+
+          <form  name="user_id" method="post" action="/task/{{assignedtask.getId}}">
+            <input type="hidden" name="user_id" value="{{ user.getId }}">
+            <div class="butlink"> Task: <button class="simple" type="submit" name="assign">{{ assignedtask.getName }}</button></div>
+          </form>
+          {% endfor %}
+    {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+
+{% include 'sidenav.html.twig' %}
+
+{% include 'bottom.html.twig' %}

@@ -1,0 +1,56 @@
+{% include 'top.html.twig' %}
+<div class = "container">
+  <div class = "row">
+    <div class = "col m12">
+      <div class = "myprofile">
+        <h2 class="header"></h2>
+        <div class="card horizontal">
+          <div class="card-image">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p>Join <span class = "brand">everydone</span> today</p>
+              <p></p>
+            </div>
+            <div class="linkbackground">
+              <div class="card-action">
+                <a href="/profile/{{ user_id }}">Edit Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="container">
+  <div class="input-area">
+    <h5>Use the fields below to create your profile</h5>
+    <form action="/homepage" method="post" enctype="multipart/form-data">
+      <div class="input-field col m4">
+        <label for="first_name">Enter your first name</label>
+        <input type="text" name="first_name">
+      </div>
+      <div class="input-field col m4">
+        <label for="last_name">Enter your last name</label>
+        <input type="text" name="last_name">
+      </div>
+      <div class="input-field col m4">
+        <label for="profile_pic">Enter the <strong>URL</strong> for your profile picture</label>
+        <input type="text" name="profile_pic">
+      </div>
+      <div class="input-field col m4">
+        <label for="bio">Enter a bio</label>
+        <textarea class="materialize-textarea" type="text" name="bio" rows="5" ></textarea>
+      </div>
+      <input type="hidden" name="user_id" value="{{ user_id }}">
+      <button type="submit" class="btn cyan waves-effect waves-light" name="button">Submit your profile</button>
+    </form>
+  </div>
+  {% if msg is not empty %}
+    {{ msg }}
+  {% endif %}
+
+  {% include 'sidenav_createpage.html.twig' %}
+
+  {% include 'bottom.html.twig' %}
+</div>

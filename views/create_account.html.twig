@@ -1,0 +1,39 @@
+{% include 'top2.html.twig' %}
+
+<div class="login-area">
+  <div class = "logo-area">
+    <img src = "images/everydone_logo_tiny.png" width="200px">
+  </div>
+  <p>Welcome to everydone, the easy to-do list for everyone!</p>
+</div>
+
+<div class="container">
+<p>To get started with everydone, enter your email and password below.</p>
+<br>
+  <form action="/create_account" method="post">
+    <div class="input-field col m4">
+      <input type="email" name="user_email" required>
+      <label for="user_email">Email (User Name)</label>
+    </div>
+
+    <div class="input-field col m4">
+      <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}" title="Must contain at least one number and one uppercase and lowercase letter, and between 8 and 15 characters" required>
+      <label for="password">Password</label>
+    </div>
+
+    <div class="input-field col m4">
+      <input type="password" name="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}" title="Must contain at least one number and one uppercase and lowercase letter, and between 8 and 15 characters" required>
+      <label for="password">Re-enter Password</label>
+    </div>
+    <br>
+    <button class="btn cyan waves-effect waves-light" type="submit" name="button">Go</button>
+  </form>
+  <br>
+
+  {% if msg is not empty %}
+    {{ msg }}
+  {% endif %}
+
+  {% include 'bottom.html.twig' %}
+
+</div>
